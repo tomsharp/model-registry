@@ -4,6 +4,7 @@ from uuid import uuid4
 import boto3
 import pickle
 import json
+from typing import List
 
 
 def _uuid4_hex():
@@ -39,6 +40,12 @@ class ModelRegistry:
         )
 
         return model.id
+
+    def list_model_ids(self) -> List[str]:
+        s3 = boto3.client("s3")
+        objects = s3.list_objects(Bucket=self._bucket_name)
+        model_ids = list(set([c["Key"].split("/")[0] for c in objects["Contents"]]))
+        return model_ids
 
     def get_metadata(self, model_id) -> ModelMetadata:
         # TODO - move to client for everything and delete s3 resource
