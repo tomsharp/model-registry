@@ -1,11 +1,14 @@
 """Example use of model registry."""
 import os
+import json 
 
 from sklearn import datasets, svm
 
 from model_registry import ModelRegistry
 
-registry_name = os.environ["MODEL_REGISTRY"]
+with open("config.json", "rb") as cf:
+    config = json.load(cf)
+    registry_name = config["registry_bucket_name"]
 
 # train sklearn model
 digits = datasets.load_digits()
