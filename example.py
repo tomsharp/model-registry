@@ -1,17 +1,13 @@
 """Example use of model registry."""
-import json
+import os
 
 from sklearn import datasets, svm
 
-from model_registry.classes import ModelRegistry
+from model_registry import ModelRegistry
 
-# load config
-with open("config.json", "rb") as fp:
-    config = json.load(fp)
-registry_name = config["registry_bucket_name"]
+registry_name = os.environ["MODEL_REGISTRY"]
 
 # train sklearn model
-iris = datasets.load_iris()
 digits = datasets.load_digits()
 model = svm.SVC(gamma=0.001, C=100.0)
 model.fit(digits.data[:-1], digits.target[:-1])
@@ -20,6 +16,10 @@ model.fit(digits.data[:-1], digits.target[:-1])
 registry = ModelRegistry(registry_name)
 model_id = registry.register_model(model)
 print(model_id)
+
+# list models
+model_ids = registry.list_model_ids()
+print(model_ids)
 
 # get metadata
 metadata = registry.get_metadata(model_id)

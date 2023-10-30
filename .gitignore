@@ -1,5 +1,5 @@
-config.json
-*/.terraform*
+*config.json
+*terraform*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
