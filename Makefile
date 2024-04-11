@@ -12,10 +12,7 @@ destroy-registry:
 	cd infra && terraform init && terraform destroy -auto-approve
 
 install:
-	pdm install --no-self
+	pdm install
 
 run-examples:
-	pdm run python -m examples.pytorch
-
-build:
-	pdm run python -m build
+	pdm run python examples/pytorch.py

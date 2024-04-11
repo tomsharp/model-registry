@@ -18,12 +18,13 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-dev = [
-    "build",
-]
+dev = []
 
 [build-system]
-requires = ["setuptools", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
 
 [tool.pdm]
+
+[tool.pdm.build]
+includes = ["registry"]
