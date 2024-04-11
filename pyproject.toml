@@ -1,0 +1,29 @@
+[project]
+name = "model-registry"
+description = "Library to interact with S3 bucket as a Model Registry."
+version = "0.1.0"
+
+readme = "README.md"
+license = {file = "LICENSE"}
+authors = [
+  {name = "Tom Sharp", email = "tom@tomsharp.io"}
+]
+
+requires-python = ">= 3.11.3"
+
+dependencies = [
+    "boto3==1.34.82",
+    "pydantic==2.6.4",
+    "torch==2.2.2"
+]
+
+[project.optional-dependencies]
+dev = [
+    "build",
+]
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.pdm]
