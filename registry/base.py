@@ -1,7 +1,7 @@
 import uuid
 from enum import Enum
 
-from pydantic import BaseModel, Field, ConfigDict
+from pydantic import BaseModel, Field, ConfigDict, SkipValidation
 
 def _new_id():
     id = uuid.uuid4()
@@ -20,7 +20,7 @@ class Metadata(BaseModel):
 class Model(BaseModel):
     model_config = ConfigDict(arbitrary_types_allowed=True)
 
-    obj: any
+    obj: SkipValidation[any]
     name: str
 
     id: str = Field(default_factory=_new_id, allow_mutation=False)

@@ -1,6 +1,5 @@
 import torch
 
-from registry.base import Model
 from registry.torch import TorchModel
 from registry.registry import ModelRegistry
 

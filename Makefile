@@ -1,7 +1,7 @@
 include .env 
 
 .EXPORT_ALL_VARIABLES:
-TF_VAR_region=${AWS_REGION}
+TF_VAR_region=${AWS_DEFAULT_REGION}
 TF_VAR_registry_name=${REGISTRY_NAME}
 
 
@@ -15,4 +15,4 @@ install:
 	pdm install
 
 run-examples:
-	pdm run python examples/pytorch.py
+	python examples/pytorch.py

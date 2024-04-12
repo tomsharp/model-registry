@@ -1,9 +1,9 @@
 *.env
 *.env.sh
 *backend.tf
-.pdm-python
 *.terraform*
-
+.pdm-python
+*.pdm-build
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
