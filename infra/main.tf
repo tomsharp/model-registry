@@ -10,10 +10,11 @@ provider "aws" {
   region = var.region
   default_tags {
     tags = {
-      app = "${var.registry_name}-model-registry"
+      app = var.app_name
     }
   }
 }
+
 
 resource "random_string" "this" {
   length  = 5
@@ -23,5 +24,10 @@ resource "random_string" "this" {
 }
 
 resource "aws_s3_bucket" "registry_bucket" {
-  bucket = "${var.registry_name}-${resource.random_string.this.result}"
+  bucket = "${var.app_name}-${resource.random_string.this.result}"
+}
+
+module "serving" {
+  source = "./serving"
+  ecr_repo_name = "${var.app_name}-${resource.random_string.this.result}"
 }

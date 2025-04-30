@@ -17,7 +17,7 @@ AWS_ACCOUNT_ID=1234567890
 AWS_DEFAULT_REGION=ap-southeast-1
 AWS_ACCESS_KEY_ID=accesskeyvalue
 AWS_SECRET_ACCESS_KEY=secretkeyvalue
-REGISTRY_NAME=my-model-registry
+APP_NAME=my-model-registry
 ```
 
 Optionally, you can set your terraform state to be saved in an S3 bucket by adding the following block to the top of the `main.tf` file
@@ -40,7 +40,7 @@ make tf-init
 ### Deploy
 Deploy the registry to S3 using the following command
 ```
-make deploy-registry
+make deploy
 ```
 
 Export the bucket name to your envrionment.
@@ -56,6 +56,12 @@ Install the Python library
 make install
 ```
 
+### Run Examples 
+Install the Python library
+
+```
+make run-examples
+```
 
 ## Usage 
 
@@ -90,3 +96,8 @@ make install
     ```
     registry.delete_model(model_id)
     ```
+
+## Destroy infrastructure (tear down)
+```
+make destroy
+```
