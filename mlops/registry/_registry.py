@@ -6,8 +6,8 @@ from typing import Optional
 import boto3 
 import torch
 
-from registry.base import Model, ModelType, Metadata
-from registry.torch import TorchModel
+from mlops.registry.base import Model, ModelType, Metadata
+from mlops.registry.torch import TorchModel
 
 class ModelRegistry:
     def __init__(self, bucket: Optional[str] = None) -> None:

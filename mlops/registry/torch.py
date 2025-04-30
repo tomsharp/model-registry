@@ -3,7 +3,7 @@ import io
 from pydantic import Field
 import torch 
 
-from registry.base import Model, ModelType
+from mlops.registry.base import Model, ModelType
 
 
 class TorchModel(Model):

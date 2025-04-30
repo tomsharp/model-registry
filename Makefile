@@ -16,5 +16,5 @@ destroy-registry:
 install:
 	pdm install
 
-run-examples:
+run-examples: install
 	pdm run examples/pytorch.py

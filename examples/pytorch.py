@@ -1,7 +1,7 @@
 import torch
 
-from registry.torch import TorchModel
-from registry.registry import ModelRegistry
+from mlops.registry.torch import TorchModel
+from mlops.registry import ModelRegistry
 
 class NeuralNetwork(torch.nn.Module):
     def __init__(self):

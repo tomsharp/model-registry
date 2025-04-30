@@ -1,0 +1,1 @@
+from ._registry import ModelRegistry
