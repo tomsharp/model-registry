@@ -63,6 +63,12 @@ Install the Python library
 make run-examples
 ```
 
+## Using without Makefile
+The Makefile exports variables from the `.env` file. If running outside the Makefile, make sure you export the variables in this file. You can do that manually or try using this command
+```
+export $(grep -v '^#' .env | xargs)
+```
+
 ## Usage 
 
 #### Create model

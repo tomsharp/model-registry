@@ -1,5 +1,6 @@
 import uuid
 from enum import Enum
+from abc import abstractmethod
 
 from pydantic import BaseModel, Field, ConfigDict, SkipValidation
 
@@ -32,3 +33,15 @@ class Model(BaseModel):
             id=self.id, name=self.name, version=self.version, type=self.type,
         ).model_dump_json()
     
+    @abstractmethod
+    def upload_artifact(self, s3_client, bucket, key):
+        raise NotImplementedError
+
+    @abstractmethod
+    def save_artifact(self, s3_client, bucket, key):
+        raise NotImplementedError
+
+    @classmethod
+    @abstractmethod
+    def load_model(self, s3_client, bucket, key) -> "Model":
+        raise NotImplementedError

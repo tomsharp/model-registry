@@ -2,6 +2,7 @@ import os
 import io
 import json 
 from typing import Optional
+import importlib
 
 import boto3 
 import torch
@@ -28,11 +29,7 @@ class ModelRegistry:
     def upload_model(self, model: Model):
         try:
             model.version += 1
-            self._s3_client.put_object(
-                Body=model.obj_buffer(),
-                Bucket=self._bucket,
-                Key=self._get_artifact_key(model.id, model.version),
-            )
+            model.upload_artifact(self._bucket, self._get_artifact_key(model.id, model.version))
             self._s3_client.put_object(
                 Body=model.to_metadata(),
                 Bucket=self._bucket,
@@ -47,6 +44,7 @@ class ModelRegistry:
         response = self._s3_client.list_objects_v2(
             Bucket=self._bucket, Prefix=f"metadata/{model_id}"
         )
+        # FIXME - need to catch if model id doesnt' exist
         versions = [int(c["Key"].split("/")[-1]) for c in response["Contents"]]
         return sorted(versions)
 
@@ -72,14 +70,8 @@ class ModelRegistry:
 
         # load model based on type
         if metadata.type == ModelType.PT:
-            artifact_response = self._s3_client.get_object(
-                Bucket=self._bucket, Key=self._get_artifact_key(model_id, model_version)
-            )
-            bytes = artifact_response["Body"].read()
-
-            return TorchModel(
-                obj=torch.load(io.BytesIO(bytes)), name=metadata.name, id=metadata.id, version=metadata.version
-            )
+            model = TorchModel.load_model(metadata, self._bucket, self._get_artifact_key(metadata.id, metadata.version))
+            return model 
 
         raise ValueError(f"Unrecognized model type: {metadata.type}")
 

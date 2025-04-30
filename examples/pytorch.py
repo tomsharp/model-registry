@@ -33,23 +33,23 @@ if __name__ == "__main__":
     loaded_model = registry.load_model(model.id)
     print(loaded_model)
 
-    # upload new model version
-    print(loaded_model.version)
-    registry.upload_model(loaded_model)
+    # # upload new model version
+    # print(loaded_model.version)
+    # registry.upload_model(loaded_model)
 
-    # list model versions
-    versions = registry.list_model_versions(model.id)
-    print(versions)
+    # # list model versions
+    # versions = registry.list_model_versions(model.id)
+    # print(versions)
 
-    # # new model
-    new_model = TorchModel(obj=NeuralNetwork(), name="new_model")
-    print(new_model.id)
-    registry.upload_model(new_model)
+    # # # new model
+    # new_model = TorchModel(obj=NeuralNetwork(), name="new_model")
+    # print(new_model.id)
+    # registry.upload_model(new_model)
 
-    # list models
-    model_ids = registry.list_models()
-    print(model_ids)
+    # # list models
+    # model_ids = registry.list_models()
+    # print(model_ids)
 
-    # delete model
-    registry.delete_model(model.id)
-    registry.delete_model(new_model.id)
+    # # delete model
+    # registry.delete_model(model.id)
+    # registry.delete_model(new_model.id)
