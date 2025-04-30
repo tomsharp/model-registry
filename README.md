@@ -15,7 +15,26 @@ Add an `.env` file containing your AWS account ID and region. Example file:
 ```
 AWS_ACCOUNT_ID=1234567890
 AWS_DEFAULT_REGION=ap-southeast-1
+AWS_ACCESS_KEY_ID=accesskeyvalue
+AWS_SECRET_ACCESS_KEY=secretkeyvalue
 REGISTRY_NAME=my-model-registry
+```
+
+Optionally, you can set your terraform state to be saved in an S3 bucket by adding the following block to the top of the `main.tf` file
+```
+terraform {
+  backend "s3" {
+    bucket = "bucketname"
+    key    = "mypath/terraform.tfstate"
+    region = "ap-southeast-1"
+  }
+}
+```
+
+### Terraform Init 
+Run the following command to initialize terraform
+```
+make tf-init
 ```
 
 ### Deploy

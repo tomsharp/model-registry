@@ -4,8 +4,11 @@
 [metadata]
 groups = ["default", "dev"]
 strategy = ["cross_platform", "inherit_metadata"]
-lock_version = "4.4.1"
-content_hash = "sha256:723187e256a3b5ecd4c9a51841543b39d8422cdca141535a4748e3bf1b1692ee"
+lock_version = "4.5.0"
+content_hash = "sha256:6608579e5ae4af203faa9e5887a33eb206f6a36f700ed5d3a3e61b1e1f9dbbb9"
+
+[[metadata.targets]]
+requires_python = ">=3.11.3"
 
 [[package]]
 name = "annotated-types"
@@ -13,6 +16,9 @@ version = "0.6.0"
 requires_python = ">=3.8"
 summary = "Reusable constraint types to use with typing.Annotated"
 groups = ["default"]
+dependencies = [
+    "typing-extensions>=4.0.0; python_version < \"3.9\"",
+]
 files = [
     {file = "annotated_types-0.6.0-py3-none-any.whl", hash = "sha256:0641064de18ba7a25dee8f96403ebc39113d0cb953a01429249d5c7564666a43"},
     {file = "annotated_types-0.6.0.tar.gz", hash = "sha256:563339e807e53ffd9c267e99fc6d9ea23eb8443c08f112651963e24e22f84a5d"},
@@ -44,6 +50,7 @@ dependencies = [
     "jmespath<2.0.0,>=0.7.1",
     "python-dateutil<3.0.0,>=2.1",
     "urllib3!=2.2.0,<3,>=1.25.4; python_version >= \"3.10\"",
+    "urllib3<1.27,>=1.25.4; python_version < \"3.10\"",
 ]
 files = [
     {file = "botocore-1.34.83-py3-none-any.whl", hash = "sha256:0a3fbbe018416aeefa8978454fb0b8129adbaf556647b72269bf02e4bf1f4161"},
