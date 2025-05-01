@@ -1,0 +1,22 @@
+[tool.pdm]
+name = "model-serving"
+version = "0.1.0"
+description = "A model serving application"
+distribution = false
+
+[project]
+name = "model-serving"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "tomsharp", email = "tom@tomsharp.io"},
+]
+dependencies = ["fastapi", "uvicorn"]
+requires-python = "==3.12.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+[project.optional-dependencies]
+sklearn = ["scikit-learn"]
+pytorch = ["torch"]
+tensorflow = ["tensorflow"]

@@ -19,14 +19,15 @@ deploy-serving:
 destroy-serving: 
 	cd infra && terraform init && terraform destroy -target=module.serving -auto-approve
 
+build-push-image-sklearn:
+	bash serving/docker/build.sh ${TF_VAR_app_name} sklearn
+
+build-push-image-pytorch:
+	bash serving/docker/build.sh ${TF_VAR_app_name} pytorch
+
 deploy: 
 	cd infra && terraform init && terraform apply -auto-approve
+	bash serving/docker/build.sh ${TF_VAR_app_name} pytorch
 
 destroy:
 	cd infra && terraform init && terraform destroy -auto-approve
-
-install:
-	pdm install
-
-run-examples: install
-	pdm run examples/pytorch.py

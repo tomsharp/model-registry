@@ -15,19 +15,11 @@ provider "aws" {
   }
 }
 
-
-resource "random_string" "this" {
-  length  = 5
-  special = false
-  numeric = false
-  upper   = false 
-}
-
 resource "aws_s3_bucket" "registry_bucket" {
-  bucket = "${var.app_name}-${resource.random_string.this.result}"
+  bucket = "${var.app_name}"
 }
 
 module "serving" {
   source = "./serving"
-  ecr_repo_name = "${var.app_name}-${resource.random_string.this.result}"
+  ecr_repo_name = "${var.app_name}"
 }

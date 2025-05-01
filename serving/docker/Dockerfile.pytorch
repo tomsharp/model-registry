@@ -1,0 +1,23 @@
+# Use a base image with Python installed
+FROM python:3.12-slim
+
+# Set working directory
+WORKDIR /app
+
+# Install PDM
+RUN pip install pdm
+
+# Copy pyproject.toml and pdm.lock
+COPY serving/pyproject.toml serving/pdm.lock /app/
+
+# Install only PyTorch dependencies
+RUN pdm install -G pytorch
+
+# Copy your app code
+COPY . /app
+
+# Expose port (adjust based on your API)
+EXPOSE 8000
+
+# Command to run the FastAPI app
+CMD ["pdm", "run", "uvicorn", "app:app", "--host", "0.0.0.0", "--port", "80"]
