@@ -27,6 +27,7 @@ build-push-image-pytorch:
 
 deploy: 
 	cd infra && terraform init && terraform apply -auto-approve
+	bash serving/docker/build.sh ${TF_VAR_app_name} sklearn
 	bash serving/docker/build.sh ${TF_VAR_app_name} pytorch
 
 destroy:

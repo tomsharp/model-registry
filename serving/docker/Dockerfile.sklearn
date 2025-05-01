@@ -4,14 +4,12 @@ FROM python:3.12-slim
 # Set working directory
 WORKDIR /app
 
-# Install PDM
-RUN pip install pdm
-
 # Copy pyproject.toml and pdm.lock
-COPY serving/pyproject.toml serving/pdm.lock /app/
+COPY serving/requirements.txt /app/
 
-# Install only PyTorch dependencies
-RUN pdm install -G sklearn
+# Install only sklearn dependencies
+RUN pip3 install -r requirements.txt
+RUN pip3 install scikit-learn
 
 # Copy your app code
 COPY . /app
